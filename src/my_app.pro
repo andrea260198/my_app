@@ -9,3 +9,5 @@ QT += core widgets
 DESTDIR = ../bin
 
 SOURCES = main.cpp
+
+RESOURCES += my_app.qrc
