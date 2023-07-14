@@ -1,18 +1,15 @@
 #include <QApplication>
-#include <QWidget>
-#include <QLabel>
-#include <QPixmap>
-#include <QSystemTrayIcon>
 #include <iostream>
+#include "MySystemTrayIcon.h""
 
 
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
 
-    QSystemTrayIcon *pTrayIcon = new QSystemTrayIcon(QIcon(":/images/my_icon.png"));
-    pTrayIcon->setToolTip("Hello world!!!");
-    pTrayIcon->setVisible(true);
+    new MySystemTrayIcon();
+
+    new MyScheduler();
 
     return app.exec();
 }
