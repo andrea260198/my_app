@@ -1,9 +1,10 @@
 #pragma once
 
-//#include <QThread>
 #include <QMap>
 #include <vector>
-#include "Task.h"
+#include "ITask.h"
+#include "PrinterTask.h"
+#include "FinderTask.h"
 
 
 class Scheduler : public QObject
@@ -15,12 +16,11 @@ public:
     ~Scheduler();
 
 private:
-    std::vector<Task> mTasks;
-    QMap<Task *, QTimer *> mTimersMap;
-    std::vector<Task> mQueue;
+    QList<ITask *> mTasks;
+    QMap<ITask *, QTimer *> mTaskTimerMap;
 
-
-    Task *pTask1, *pTask2;
+    ITask *pTask1;
+    ITask *pTask2;
     QTimer *pTimer1, *pTimer2;
 };
 
