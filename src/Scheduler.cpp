@@ -5,9 +5,11 @@ Scheduler::Scheduler()
 {
     pTask1 = new PrinterTask();
     pTimer1 = new QTimer();
+    pTimer1->start(1'000);  // Emit QTimer::timeout signal every 10 sec.
 
     pTask2 = new FinderTask();
     pTimer2 = new QTimer();
+    pTimer2->start(5'000);  // Emit QTimer::timeout signal every 30 sec.
 
     mTaskTimerMap.insert(pTask1, pTimer1);
     mTaskTimerMap.insert(pTask2, pTimer2);

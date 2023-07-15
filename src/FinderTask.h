@@ -1,5 +1,7 @@
 #pragma once
 
+#include <QFileInfo>
+#include <QDebug>
 #include "ITask.h"
 
 
