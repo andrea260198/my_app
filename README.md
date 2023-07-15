@@ -1,4 +1,4 @@
-# My_App
+# Application
 Please, find the app my_app.exe in the bin folder.
 
 ## Exercise specifications
@@ -27,15 +27,6 @@ ma non richiede, l'esistenza di un thread dedicato all'esecuzione dei tasks (sep
 la GUI), ma non sarà possibile avere un thread specifico per ciascun task. Se la richiesta di esecuzione 
 di un task arriva mentre si sta già eseguendo un secondo task, l'esecuzione dovrà essere posticipata 
 alla fine del task in corso.
-
-## Classes
-The application is made of the following classes:
-* SystemTrayIcon
-* Scheduler
-* ITask
-* PrinterTask
-* PrinterTaskWindow
-* FinderTask
 
 ## Credits
 The image my_icon.png has been downloaded from "flaticon.com".
