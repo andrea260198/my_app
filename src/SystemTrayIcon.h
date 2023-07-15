@@ -1,3 +1,5 @@
+// SystemTrayIcon class manages the tray icon of the application
+
 #pragma once
 
 #include <QSystemTrayIcon>
