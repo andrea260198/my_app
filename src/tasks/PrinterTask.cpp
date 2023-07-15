@@ -5,7 +5,7 @@
 PrinterTask::PrinterTask()
 {
     mName = "PrinterTask";
-    mPeriod = 1;
+    mPeriod = 10;
     mpWindow = new PrinterTaskWindow(this);
 }
 

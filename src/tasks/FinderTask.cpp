@@ -4,7 +4,7 @@
 FinderTask::FinderTask()
 {
     mName = "FinderTask";
-    mPeriod = 5;  // [s]
+    mPeriod = 30;  // [s]
 }
 
 
