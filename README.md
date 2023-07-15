@@ -28,6 +28,10 @@ la GUI), ma non sarà possibile avere un thread specifico per ciascun task. Se l
 di un task arriva mentre si sta già eseguendo un secondo task, l'esecuzione dovrà essere posticipata 
 alla fine del task in corso.
 
+## How to build
+On Windows, open the .pro file with QtCreator to open the project.
+Then build using QtCreator.
+
 ## Credits
 The image my_icon.png has been downloaded from "flaticon.com".
 
