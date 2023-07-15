@@ -1,4 +1,4 @@
-// ITask is an interface for every task that can be created in the future.
+// ITask is an interface for a task.
 
 #pragma once
 
@@ -16,9 +16,11 @@ public:
 //    virtual ~ITask();
 
     virtual void run() = 0;
-    QString getName() { return name; };
+    QString getName() { return mName; };
+    long getPeriod() { return mPeriod; };
 
-private:
-    QString name;
+protected:
+    QString mName;  // Name of the task.
+    long mPeriod;  // [s] Task shall be repeated every <mPeriod> seconds.
 };
 
