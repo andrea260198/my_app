@@ -12,9 +12,6 @@ class ITask : public QObject
     Q_OBJECT
 
 public:
-//    ITask();
-//    virtual ~ITask();
-
     virtual void run() = 0;
     QString getName() { return mName; };
     long getPeriod() { return mPeriod; };
