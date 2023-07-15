@@ -7,8 +7,11 @@
 #include <QApplication>
 #include <QDialog>
 #include <QThread>
-#include <QVBoxLayout>>
+#include <QVBoxLayout>
 #include "ITask.h"
+
+
+class PrinterTaskWindow;  // Forward declaration
 
 
 class PrinterTask : public ITask
@@ -18,12 +21,27 @@ public:
     ~PrinterTask();
 
     void run() override;
+    void setMsgDefined(bool val) { msgIsDefined = val; };
+    void setMsg(QString msg) { mMsg = msg; };
 
 private:
     QString mMsg = "Hello world!!!\n";
     bool msgIsDefined = false;
 
-    QWidget *mpWindow;
+    PrinterTaskWindow *mpWindow;
+};
+
+
+class PrinterTaskWindow : public QWidget {
+public:
+    PrinterTaskWindow(PrinterTask *pPrTask);
+    ~PrinterTaskWindow();
+
+    void setupUi();
+
+private:
+    PrinterTask *pt;
+
     QVBoxLayout *mpVBoxLayout;
     QLineEdit *mpLineEdit;
 };
