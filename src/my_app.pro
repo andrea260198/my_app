@@ -8,17 +8,19 @@ QT += core widgets
 
 DESTDIR = ../bin
 
+INCLUDEPATH = tasks
+
 SOURCES = \
-        FinderTask.cpp \
-        PrinterTask.cpp \
+        tasks/FinderTask.cpp \
+        tasks/PrinterTask.cpp \
         Scheduler.cpp \
         SystemTrayIcon.cpp \
         main.cpp
 
 HEADERS = \
-        FinderTask.h \
+        tasks/FinderTask.h \
+        tasks/PrinterTask.h \
         ITask.h \
-        PrinterTask.h \
         Scheduler.h \
         SystemTrayIcon.h
 
