@@ -1,15 +1,16 @@
 #include <QApplication>
 #include <iostream>
-#include "MySystemTrayIcon.h""
+#include "SystemTrayIcon.h"
+#include "Scheduler.h"
 
 
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
 
-    new MySystemTrayIcon();
+    new SystemTrayIcon();
 
-    new MyScheduler();
+    new Scheduler();
 
     return app.exec();
 }

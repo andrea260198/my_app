@@ -9,12 +9,14 @@ QT += core widgets
 DESTDIR = ../bin
 
 SOURCES = \
-        MyScheduler.cpp \
-        main.cpp \
-        MySystemTrayIcon.cpp
+        Scheduler.cpp \
+        SystemTrayIcon.cpp \
+        Task.cpp \
+        main.cpp
 
 HEADERS = \
-        MyScheduler.h \
-        MySystemTrayIcon.h
+        Scheduler.h \
+        SystemTrayIcon.h \
+        Task.h
 
 RESOURCES += my_app.qrc
