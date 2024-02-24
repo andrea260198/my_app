@@ -5,7 +5,7 @@
 
 #include <QMap>
 #include <QDebug>
-#include "memory"
+#include <memory>
 #include "ITask.h"
 
 

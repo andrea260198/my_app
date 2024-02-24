@@ -9,7 +9,11 @@
 #include <QLineEdit>
 #include <QVBoxLayout>
 #include <QLabel>
+#include <memory>
 #include "ITask.h"
+
+
+// TODO: resolve circular reference between PrinterTask and PrinterTaskWindow
 
 
 class PrinterTaskWindow;  // Forward declaration
@@ -29,7 +33,7 @@ private:
     QString mMsg;
     bool msgIsDefined = false;
 
-    PrinterTaskWindow *mpWindow;
+    std::shared_ptr<PrinterTaskWindow> mpWindow;
 };
 
 
@@ -41,10 +45,12 @@ public:
     void setupUi();
 
 private:
-    PrinterTask *mpTask;
+    void inputReceived();
 
-    QVBoxLayout *mpLayout;
-    QLabel *mpLabel;
-    QLineEdit *mpLineEdit;
+    std::shared_ptr<PrinterTask> mpTask;
+
+    std::shared_ptr<QVBoxLayout> mpLayout;
+    std::shared_ptr<QLabel> mpLabel;
+    std::shared_ptr<QLineEdit> mpLineEdit;
 };
 

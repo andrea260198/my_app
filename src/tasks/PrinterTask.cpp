@@ -6,13 +6,13 @@ PrinterTask::PrinterTask()
 {
     mName = "PrinterTask";
     mPeriod = 10;
-    mpWindow = new PrinterTaskWindow(this);
+    mpWindow = std::make_shared<PrinterTaskWindow>(this);
 }
 
 
 PrinterTask::~PrinterTask()
 {
-    delete mpWindow;
+
 }
 
 
@@ -39,28 +39,35 @@ PrinterTaskWindow::PrinterTaskWindow(PrinterTask *pTask)
 
 PrinterTaskWindow::~PrinterTaskWindow()
 {
-    delete mpLayout;
-    delete mpLabel;
-    delete mpLineEdit;
+
 }
 
 
 void PrinterTaskWindow::setupUi()
 {
     this->resize(200, 100);
-    mpLayout = new QVBoxLayout();
-    this->setLayout(mpLayout);
+    mpLayout = std::make_shared<QVBoxLayout>();
+    this->setLayout(mpLayout.get());
 
-    mpLabel = new QLabel("Please, write a message below and press Enter");
+    mpLabel = std::make_shared<QLabel>("Please, write a message below and press Enter");
 
-    mpLineEdit = new QLineEdit();
+    mpLineEdit = std::make_shared<QLineEdit>();
     mpLineEdit->resize(100, 100);
 
-    mpLayout->addWidget(mpLabel);
-    mpLayout->addWidget(mpLineEdit);
+    mpLayout->addWidget(mpLabel.get());
+    mpLayout->addWidget(mpLineEdit.get());
 
-    connect(mpLineEdit,
+    connect(mpLineEdit.get(),
             &QLineEdit::editingFinished,
             this,
-            [this](){ mpTask->setMsgDefined(true); mpTask->setMsg(mpLineEdit->text()); this->setVisible(false); });
+            &PrinterTaskWindow::inputReceived);
 }
+
+
+void PrinterTaskWindow::inputReceived()
+{
+    mpTask->setMsgDefined(true);
+    mpTask->setMsg(mpLineEdit->text());
+    this->setVisible(false);
+}
+
