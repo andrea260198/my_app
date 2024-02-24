@@ -1,38 +1,37 @@
 # Application
+
 Please, find the app my_app.exe in the bin folder.
 
 ## Exercise specifications
-Lo scopo di questa applicazione sarà quello di fornire la possibilità di eseguire in modo periodico 
-(ogni 10 secondi, ogni 2 ore, il lunedì martedì e mercoledì alle 12:00, ...) una serie di "task" 
-indipendenti tra di loro. La periodicità sarà configurabile per il singolo task così da permettere, 
-ad esempio, che il task "T1" venga eseguito una volta ogni ora mentre il task "T2" venga eseguito una 
-volta ogni 10 secondi. Tramite la QSystemTrayIcon l'utente avrà la possibilità di interagire con 
-l'applicazione accedendo a tutte le configurazioni e i parametri richiesti dai vari tasks.
 
-Il compito principale del candidato sarà quindi quello di progettare e implementare uno schedulatore 
-generico di tasks, ponendo molta attenzione alla modularità. Si richiede infatti che lo schedulatore 
-consenta facilmente di:
+The goal of this app is to make possible to periodically execute (every 10 seconds, every 2 hours, Monday Tuesday and Wednesday at 12pm, ...)
+a series of tasks independent from each other. Periodicity shall be configurable for every single task so that,
+for example, task "T1" can be executed once every hour, while task "T2" is executed once every 10 seconds.
+By using a QSystemTrayIcon the user shall be able to interact with the app accessing all the configurations and 
+the paramenters required by the various tasks.
 
-- ampliare il set di task a disposizione
-- complicare a piacere le periodicità supportate
+The main task of the candidate is to design and implement a generic scheduler of tasks, focusing on modularity.
+It is required for the scheduler to be able to:
 
-Ai fini del test è sufficiente che l'applicazione supporti 2 task indipendenti. Il primo task dovrà 
-consentire la scelta di un testo, tramite GUI, che verrà stampato in debug ogni 10 secondi. Il secondo 
-dovrà controllare, ogni 30 secondi, se uno specifico file ("C:/ESEMPIO.txt") esiste. Nel caso non esista, 
-stampare in debug un messaggio di notifica. Per semplicità non si richiede che le periodicità dei task 
-siano configurabili tramite GUI (basta siano modulari e configurabili lato programmazione).
+- increase the set of possible tasks
+- complicate the periodicity of tasks
 
-Si richiede inoltre che i vari tasks vengano eseguiti in modo serializzato e non parallelo. Si ammette, 
-ma non richiede, l'esistenza di un thread dedicato all'esecuzione dei tasks (separato dal principale per 
-la GUI), ma non sarà possibile avere un thread specifico per ciascun task. Se la richiesta di esecuzione 
-di un task arriva mentre si sta già eseguendo un secondo task, l'esecuzione dovrà essere posticipata 
-alla fine del task in corso.
+In order to succede in the test, it is sufficient for the app to support 2 independent tasks. The first task shall receive a text as input,
+with a GUI, which will be printed in debug every 10 seconds. The second task shall check, every 30 seconds, if a specific file ("C:/EXAMPLE.txt") exists.
+In case the file does not exist, print in debug a message to notify. For simplicity, it is not required for the tasks periodicity to be configurable with a GUI
+(it's enough that it is modular and configurable through coding).
+
+It is expected, in addition, that the various tasks are executed serially and not in parallel. It is allowed, but not required,
+to have a specific thread  for tasks execution (separated from the main one for the GUI), but it is not possible to have a specific thread for every task.
+If the request for a task execution arrives when another task is executing, the execution shall be postponed to the end of the current running task.
 
 ## How to build
+
 On Windows, open the .pro file with QtCreator to open the project.
 Then build using QtCreator.
 
 ## Credits
+
 The image my_icon.png has been downloaded from "flaticon.com".
 
 
