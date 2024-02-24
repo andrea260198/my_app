@@ -13,10 +13,8 @@
 #include "ITask.h"
 
 
-// TODO: resolve circular reference between PrinterTask and PrinterTaskWindow
-
-
 class PrinterTaskWindow;  // Forward declaration
+class PrinterTaskStatus;  // Forward declaration
 
 
 class PrinterTask : public ITask
@@ -26,20 +24,31 @@ public:
     ~PrinterTask();
 
     void run() override;
-    void setMsgDefined(const bool val) { msgIsDefined = val; };
+
+private:
+    std::shared_ptr<PrinterTaskStatus> mpStatus;
+    std::shared_ptr<PrinterTaskWindow> mpWindow;
+};
+
+
+class PrinterTaskStatus: public QObject
+{
+    Q_OBJECT
+public:
+    void setMsgDefined(const bool val) { bMsgIsDefined = val; };
     void setMsg(const QString &msg) { mMsg = msg; };
+    QString getMsg();
+    bool isMsgDefined();
 
 private:
     QString mMsg;
-    bool msgIsDefined = false;
-
-    std::shared_ptr<PrinterTaskWindow> mpWindow;
+    bool bMsgIsDefined = false;
 };
 
 
 class PrinterTaskWindow : public QWidget {
 public:
-    PrinterTaskWindow(PrinterTask *pPrTask);
+    PrinterTaskWindow(std::shared_ptr<PrinterTaskStatus> pStatus);
     ~PrinterTaskWindow();
 
     void setupUi();
@@ -47,10 +56,11 @@ public:
 private:
     void inputReceived();
 
-    std::shared_ptr<PrinterTask> mpTask;
+    std::shared_ptr<PrinterTaskStatus> mpStatus;
 
     std::shared_ptr<QVBoxLayout> mpLayout;
     std::shared_ptr<QLabel> mpLabel;
     std::shared_ptr<QLineEdit> mpLineEdit;
 };
+
 

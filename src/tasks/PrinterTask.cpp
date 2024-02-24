@@ -6,7 +6,8 @@ PrinterTask::PrinterTask()
 {
     mName = "PrinterTask";
     mPeriod = 10;
-    mpWindow = std::make_shared<PrinterTaskWindow>(this);
+    mpStatus = std::make_shared<PrinterTaskStatus>();
+    mpWindow = std::make_shared<PrinterTaskWindow>(mpStatus);
 }
 
 
@@ -18,9 +19,9 @@ PrinterTask::~PrinterTask()
 
 void PrinterTask::run()
 {
-    if ( msgIsDefined )
+    if ( mpStatus->isMsgDefined() )
     {
-        qDebug().noquote() << mMsg;
+        qDebug().noquote() << mpStatus->getMsg();
 
     } else
     {
@@ -30,8 +31,8 @@ void PrinterTask::run()
 
 
 // PrinterTaskWindow method definitions
-PrinterTaskWindow::PrinterTaskWindow(PrinterTask *pTask)
-    : mpTask(pTask)
+PrinterTaskWindow::PrinterTaskWindow(std::shared_ptr<PrinterTaskStatus> pStatus)
+    : mpStatus(pStatus)
 {
     setupUi();
 }
@@ -66,8 +67,20 @@ void PrinterTaskWindow::setupUi()
 
 void PrinterTaskWindow::inputReceived()
 {
-    mpTask->setMsgDefined(true);
-    mpTask->setMsg(mpLineEdit->text());
+    mpStatus->setMsgDefined(true);
+    mpStatus->setMsg(mpLineEdit->text());
     this->setVisible(false);
 }
 
+
+// PrinterTaskStatus method definitions
+QString PrinterTaskStatus::getMsg()
+{
+    return mMsg;
+}
+
+
+bool PrinterTaskStatus::isMsgDefined()
+{
+    return bMsgIsDefined;
+}
