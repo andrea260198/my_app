@@ -9,11 +9,9 @@ Scheduler::Scheduler()
 }
 
 
-Scheduler::~Scheduler() {
-    delete pTask1;
-    delete pTask2;
-    delete pTimer1;
-    delete pTimer2;
+Scheduler::~Scheduler()
+{
+
 }
 
 
@@ -21,10 +19,10 @@ void Scheduler::initialize()
 {
     mTaskTimerMap = createTaskTimerMap();
 
-    for ( auto iter : mTaskTimerMap.toStdMap() )
+    for ( const auto &iter : mTaskTimerMap.toStdMap() )
     {
-        ITask *pTask = iter.first;
-        QTimer *pTimer = iter.second;
+        auto pTask = iter.first.get();
+        auto pTimer = iter.second.get();
 
         // Every time the timer emits the timout signal, the task is executed.
         // "Qt::QueuedConnection" option specifies that tasks shall be executed sequentially.
@@ -34,15 +32,15 @@ void Scheduler::initialize()
 }
 
 
-QMap<ITask *, QTimer *> Scheduler::createTaskTimerMap() {
-    QMap<ITask *, QTimer *> taskTimerMap;
+task_timer_map_t Scheduler::createTaskTimerMap() {
+    decltype(mTaskTimerMap) taskTimerMap;
 
-    pTask1 = new PrinterTask();
-    pTimer1 = new QTimer();
+    pTask1 = std::make_shared<PrinterTask>();
+    pTimer1 = std::make_shared<QTimer>();
     pTimer1->start( 1'000 * pTask1->getPeriod() );  // Emit QTimer::timeout signal every 10 sec.  TODO: change time to 10 sec
 
-    pTask2 = new FinderTask();
-    pTimer2 = new QTimer();
+    pTask2 = std::make_shared<FinderTask>();
+    pTimer2 = std::make_shared<QTimer>();
     pTimer2->start( 1'000 * pTask2->getPeriod() );  // Emit QTimer::timeout signal every 30 sec.  TODO: change time to 30 sec
 
     taskTimerMap.insert(pTask1, pTimer1);
