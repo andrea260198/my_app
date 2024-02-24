@@ -7,7 +7,7 @@ PrinterTask::PrinterTask()
     mName = "PrinterTask";
     mPeriod = 10;
     mpStatus = std::make_shared<PrinterTaskStatus>();
-    mpWindow = std::make_shared<PrinterTaskWindow>(mpStatus);
+    mpWindow = std::make_unique<PrinterTaskWindow>(mpStatus);
 }
 
 
@@ -47,12 +47,12 @@ PrinterTaskWindow::~PrinterTaskWindow()
 void PrinterTaskWindow::setupUi()
 {
     this->resize(200, 100);
-    mpLayout = std::make_shared<QVBoxLayout>();
+    mpLayout = std::make_unique<QVBoxLayout>();
     this->setLayout(mpLayout.get());
 
-    mpLabel = std::make_shared<QLabel>("Please, write a message below and press Enter");
+    mpLabel = std::make_unique<QLabel>("Please, write a message below and press Enter");
 
-    mpLineEdit = std::make_shared<QLineEdit>();
+    mpLineEdit = std::make_unique<QLineEdit>();
     mpLineEdit->resize(100, 100);
 
     mpLayout->addWidget(mpLabel.get());

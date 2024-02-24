@@ -27,7 +27,7 @@ public:
 
 private:
     std::shared_ptr<PrinterTaskStatus> mpStatus;
-    std::shared_ptr<PrinterTaskWindow> mpWindow;
+    std::unique_ptr<PrinterTaskWindow> mpWindow;
 };
 
 
@@ -58,9 +58,9 @@ private:
 
     std::shared_ptr<PrinterTaskStatus> mpStatus;
 
-    std::shared_ptr<QVBoxLayout> mpLayout;
-    std::shared_ptr<QLabel> mpLabel;
-    std::shared_ptr<QLineEdit> mpLineEdit;
+    std::unique_ptr<QVBoxLayout> mpLayout;
+    std::unique_ptr<QLabel> mpLabel;
+    std::unique_ptr<QLineEdit> mpLineEdit;
 };
 
 
