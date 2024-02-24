@@ -22,8 +22,8 @@ public:
     ~PrinterTask();
 
     void run() override;
-    void setMsgDefined(bool val) { msgIsDefined = val; };
-    void setMsg(QString msg) { mMsg = msg; };
+    void setMsgDefined(const bool val) { msgIsDefined = val; };
+    void setMsg(const QString &msg) { mMsg = msg; };
 
 private:
     QString mMsg;
