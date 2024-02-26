@@ -11,10 +11,8 @@
 #include <QLabel>
 #include <memory>
 #include "ITask.h"
-
-
-class PrinterTaskWindow;  // Forward declaration
-class PrinterTaskStatus;  // Forward declaration
+#include "PrinterTaskStatus.h"
+#include "PrinterTaskWindow.h"
 
 
 class PrinterTask : public ITask
@@ -28,39 +26,6 @@ public:
 private:
     std::shared_ptr<PrinterTaskStatus> mpStatus;
     std::unique_ptr<PrinterTaskWindow> mpWindow;
-};
-
-
-class PrinterTaskStatus: public QObject
-{
-    Q_OBJECT
-public:
-    void setMsgDefined(const bool val) { bMsgIsDefined = val; };
-    void setMsg(const QString &msg) { mMsg = msg; };
-    QString getMsg();
-    bool isMsgDefined();
-
-private:
-    QString mMsg;
-    bool bMsgIsDefined = false;
-};
-
-
-class PrinterTaskWindow : public QWidget {
-public:
-    PrinterTaskWindow(std::shared_ptr<PrinterTaskStatus> pStatus);
-    ~PrinterTaskWindow();
-
-    void setupUi();
-
-private:
-    void inputReceived();
-
-    std::shared_ptr<PrinterTaskStatus> mpStatus;
-
-    std::unique_ptr<QVBoxLayout> mpLayout;
-    std::unique_ptr<QLabel> mpLabel;
-    std::unique_ptr<QLineEdit> mpLineEdit;
 };
 
 
