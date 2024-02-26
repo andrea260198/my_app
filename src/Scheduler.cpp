@@ -32,8 +32,9 @@ void Scheduler::initialize()
 }
 
 
-task_timer_map_t Scheduler::createTaskTimerMap() {
-    decltype(mTaskTimerMap) taskTimerMap;
+task_timer_map_t Scheduler::createTaskTimerMap()
+{
+    task_timer_map_t taskTimerMap;
 
     pTask1 = std::make_shared<PrinterTask>();
     pTimer1 = std::make_shared<QTimer>();
