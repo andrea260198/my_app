@@ -22,9 +22,9 @@ void FinderTask::run()
     {
         qDebug() << "File does not exists";
     }
-    //else
-    //{
-    //    qDebug() << "File exists";
-    //}
+    else
+    {
+        qDebug() << "File exists";
+    }
 
 }
