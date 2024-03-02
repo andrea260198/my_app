@@ -16,6 +16,6 @@ public:
     void run() override;
 
 private:
-    QString file_path = "C:/Users/Andrea/Desktop/my_app/hello.txt";
+    QString file_path = "C:/Users/Andrea/Desktop/my_app/example.txt";
 };
 

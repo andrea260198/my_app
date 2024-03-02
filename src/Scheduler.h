@@ -6,7 +6,7 @@
 #include <QMap>
 #include <QDebug>
 #include <memory>
-#include "ITask.h"
+#include "tasks/ITask.h"
 
 
 typedef QMap<std::shared_ptr<ITask>, std::shared_ptr<QTimer>> task_timer_map_t;
