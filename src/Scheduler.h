@@ -18,12 +18,9 @@ class Scheduler : public QObject
 
 public:
     Scheduler();
-    ~Scheduler();
-
-    void initialize();
-    task_timer_map_t createTaskTimerMap();
 
 private:
+    task_timer_map_t createTaskTimerMap();
     task_timer_map_t mTaskTimerMap;  // This map associates a QTimer object to every task.
 
     std::shared_ptr<ITask> pTask1, pTask2;

@@ -5,18 +5,6 @@
 
 Scheduler::Scheduler()
 {
-    initialize();
-}
-
-
-Scheduler::~Scheduler()
-{
-
-}
-
-
-void Scheduler::initialize()
-{
     mTaskTimerMap = createTaskTimerMap();
 
     for ( const auto &iter : mTaskTimerMap.toStdMap() )
