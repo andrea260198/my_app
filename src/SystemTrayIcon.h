@@ -13,9 +13,6 @@ public:
     SystemTrayIcon();
     ~SystemTrayIcon() {};
 
-    void setupUi();
-
-
 private:
-
+    void setupUi();
 };
