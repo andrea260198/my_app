@@ -7,15 +7,12 @@ Scheduler::Scheduler()
 {
     mTaskTimerMap = createTaskTimerMap();
 
-    for ( auto [key, value] : mTaskTimerMap.asKeyValueRange() )
+    for ( auto [task, timer] : mTaskTimerMap.asKeyValueRange() )
     {
-        auto pTask = key.get();
-        auto pTimer = value.get();
-
         // Every time the timer emits the timout signal, the task is executed.
         // "Qt::QueuedConnection" option specifies that tasks shall be executed sequentially.
         // Note that the tasks will run in the main thread.
-        QObject::connect(pTimer, &QTimer::timeout, pTask, &ITask::run, Qt::QueuedConnection);
+        QObject::connect(timer.get(), &QTimer::timeout, task.get(), &ITask::run, Qt::QueuedConnection);
     }
 }
 
