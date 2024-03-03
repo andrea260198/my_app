@@ -7,10 +7,10 @@ Scheduler::Scheduler()
 {
     mTaskTimerMap = createTaskTimerMap();
 
-    for ( const auto &iter : mTaskTimerMap.toStdMap() )
+    for ( auto [key, value] : mTaskTimerMap.asKeyValueRange() )
     {
-        auto pTask = iter.first.get();
-        auto pTimer = iter.second.get();
+        auto pTask = key.get();
+        auto pTimer = value.get();
 
         // Every time the timer emits the timout signal, the task is executed.
         // "Qt::QueuedConnection" option specifies that tasks shall be executed sequentially.
