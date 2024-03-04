@@ -1,3 +1,5 @@
+#include <QSettings>
+#include <QDir>
 #include "Scheduler.h"
 #include "PrinterTask.h"
 #include "FinderTask.h"
@@ -5,8 +7,51 @@
 
 Scheduler::Scheduler()
 {
-    mTaskTimerMap = createTaskTimerMap();
+    setTaskList();
+    setTaskFrequency();
+    setTaskTimerMap();
+    connectTaskAndTimer();
+}
 
+
+void Scheduler::setTaskList()
+{
+    pTask1 = std::make_shared<PrinterTask>();
+    pTask2 = std::make_shared<FinderTask>();
+
+    task_list_t tasks = {pTask1, pTask2};
+    mTaskList.append(tasks);
+}
+
+
+void Scheduler::setTaskFrequency()
+{
+    auto homePath = QDir::homePath();
+    QString task_timer_settings_filename = "task_timer_settings.ini";
+    QSettings settings(homePath + "/" + task_timer_settings_filename, QSettings::IniFormat);
+
+    for (auto task : mTaskList)
+    {
+        long period = settings.value(task->getName() + "/period", "r").toInt();
+        task->setPeriod(period);
+    }
+}
+
+
+void Scheduler::setTaskTimerMap()
+{
+    for (auto pTask : mTaskList)
+    {
+        auto pTimer = std::make_shared<QTimer>();
+        pTimer->start( 1'000 * pTask->getPeriod() );  // Emit QTimer::timeout signal every 30 sec.  TODO: change time to 30 sec
+
+        mTaskTimerMap.insert(pTask, pTimer);
+    }
+}
+
+
+void Scheduler::connectTaskAndTimer()
+{
     for ( auto [task, timer] : mTaskTimerMap.asKeyValueRange() )
     {
         // Every time the timer emits the timout signal, the task is executed.
@@ -14,23 +59,4 @@ Scheduler::Scheduler()
         // Note that the tasks will run in the main thread.
         QObject::connect(timer.get(), &QTimer::timeout, task.get(), &ITask::run, Qt::QueuedConnection);
     }
-}
-
-
-task_timer_map_t Scheduler::createTaskTimerMap()
-{
-    task_timer_map_t taskTimerMap;
-
-    pTask1 = std::make_shared<PrinterTask>();
-    pTimer1 = std::make_shared<QTimer>();
-    pTimer1->start( 1'000 * pTask1->getPeriod() );  // Emit QTimer::timeout signal every 10 sec.  TODO: change time to 10 sec
-
-    pTask2 = std::make_shared<FinderTask>();
-    pTimer2 = std::make_shared<QTimer>();
-    pTimer2->start( 1'000 * pTask2->getPeriod() );  // Emit QTimer::timeout signal every 30 sec.  TODO: change time to 30 sec
-
-    taskTimerMap.insert(pTask1, pTimer1);
-    taskTimerMap.insert(pTask2, pTimer2);
-
-    return taskTimerMap;
 }

@@ -15,6 +15,7 @@ public:
     virtual void run() = 0;
     QString getName() { return mName; };
     long getPeriod() { return mPeriod; };
+    void setPeriod(long period) { mPeriod = period;};
 
 protected:
     QString mName;  // Name of the task.

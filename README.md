@@ -23,6 +23,11 @@ It is expected, in addition, that the various tasks are executed serially and no
 to have a specific thread  for tasks execution (separated from the main one for the GUI), but it is not possible to have a specific thread for every task.
 If the request for a task execution arrives when another task is executing, the execution shall be postponed to the end of the current running task.
 
+
+## Installation
+Put `task_timer_settings.ini` in the `C:\Users\<username>\` directory.
+
+
 ## Credits
 
 The image my_icon.png has been downloaded from "flaticon.com".
