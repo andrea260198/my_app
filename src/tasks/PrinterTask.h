@@ -10,7 +10,7 @@
 #include <QVBoxLayout>
 #include <QLabel>
 #include <memory>
-#include "ITask.h"
+#include "AbstractTask.h"
 #include "PrinterTaskStatus.h"
 #include "PrinterTaskWindow.h"
 

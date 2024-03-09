@@ -4,7 +4,7 @@
 
 #include <QFileInfo>
 #include <QDebug>
-#include "ITask.h"
+#include "AbstractTask.h"
 
 
 class FinderTask : public AbstractTask
