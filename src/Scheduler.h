@@ -6,7 +6,7 @@
 #include <QMap>
 #include <QDebug>
 #include <memory>
-#include "tasks/ITask.h"
+#include "tasks/AbstractTask.h"
 
 
 using task_timer_map_t = QMap<std::shared_ptr<AbstractTask>, std::shared_ptr<QTimer>>;
