@@ -3,12 +3,13 @@
 #include <QSettings>
 
 
-class SettingsManager: public QSettings
+class SettingsFactory
 {
 public:
-    SettingsManager();
+    SettingsFactory() = delete;
+    QSettings create();
 
 private:
-    QString task_timer_settings_filename;
+
 };
 

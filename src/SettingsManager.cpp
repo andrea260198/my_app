@@ -2,9 +2,8 @@
 #include "SettingsManager.h"
 
 
-SettingsManager::SettingsManager()
-    : task_timer_settings_filename("task_timer_settings.ini")
-    , QSettings(QDir::homePath() + "/" + task_timer_settings_filename, QSettings::IniFormat)
+QSettings SettingsFactory::create()
 {
-
+    QString task_timer_settings_filename = "task_timer_settings.ini";
+    return QSettings(QDir::homePath() + "/" + task_timer_settings_filename, QSettings::IniFormat);
 }

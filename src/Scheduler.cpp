@@ -27,7 +27,8 @@ void Scheduler::setTaskList()
 
 void Scheduler::setTaskFrequency()
 {
-    SettingsManager settings;
+    SettingsFactory settingsFactory;
+    auto settings = settingsFactory.create();
 
     for (auto task : mTaskList)
     {
