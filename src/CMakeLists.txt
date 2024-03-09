@@ -5,7 +5,7 @@ qt_add_executable(task_scheduler_app
     main.cpp
     Scheduler.cpp
     SystemTrayIcon.cpp
-    SettingsManager.cpp
+    SettingsFactory.cpp
     tasks/AbstractTask.h
     tasks/FinderTask.cpp
     tasks/PrinterTask.cpp

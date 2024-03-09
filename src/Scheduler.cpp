@@ -3,7 +3,7 @@
 #include "Scheduler.h"
 #include "PrinterTask.h"
 #include "FinderTask.h"
-#include "SettingsManager.h"
+#include "SettingsFactory.h"
 
 
 Scheduler::Scheduler()
@@ -28,7 +28,7 @@ void Scheduler::setTaskList()
 void Scheduler::setTaskFrequency()
 {
     SettingsFactory settingsFactory;
-    auto settings = settingsFactory.create();
+    QSettings settings = settingsFactory.create();
 
     for (auto task : mTaskList)
     {

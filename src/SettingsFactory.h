@@ -6,7 +6,7 @@
 class SettingsFactory
 {
 public:
-    SettingsFactory() = delete;
+    SettingsFactory() {};
     QSettings create();
 
 private:

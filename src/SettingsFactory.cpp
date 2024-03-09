@@ -1,5 +1,5 @@
 #include <QDir>
-#include "SettingsManager.h"
+#include "SettingsFactory.h"
 
 
 QSettings SettingsFactory::create()
