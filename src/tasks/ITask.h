@@ -7,11 +7,17 @@
 #include <QObject>
 
 
-class ITask : public QObject
+class AbstractTask : public QObject
 {
     Q_OBJECT
 
 public:
+    AbstractTask(const QString &name, long period)
+        : mName(name)
+        , mPeriod(period)
+    {
+    }
+
     virtual void run() = 0;
     QString getName() { return mName; };
     long getPeriod() { return mPeriod; };

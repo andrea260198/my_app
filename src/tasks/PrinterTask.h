@@ -15,7 +15,7 @@
 #include "PrinterTaskWindow.h"
 
 
-class PrinterTask : public ITask
+class PrinterTask : public AbstractTask
 {
 public:
     PrinterTask();

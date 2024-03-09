@@ -9,8 +9,8 @@
 #include "tasks/ITask.h"
 
 
-using task_timer_map_t = QMap<std::shared_ptr<ITask>, std::shared_ptr<QTimer>>;
-using task_list_t = QList<std::shared_ptr<ITask>>;
+using task_timer_map_t = QMap<std::shared_ptr<AbstractTask>, std::shared_ptr<QTimer>>;
+using task_list_t = QList<std::shared_ptr<AbstractTask>>;
 
 
 class Scheduler : public QObject
@@ -29,7 +29,7 @@ private:
     task_list_t mTaskList;
     task_timer_map_t mTaskTimerMap;  // This map associates a QTimer object to every task.
 
-    std::shared_ptr<ITask> pTask1, pTask2;
+    std::shared_ptr<AbstractTask> pTask1, pTask2;
     std::shared_ptr<QTimer> pTimer1, pTimer2;
 };
 

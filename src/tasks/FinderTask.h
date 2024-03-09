@@ -7,7 +7,7 @@
 #include "ITask.h"
 
 
-class FinderTask : public ITask
+class FinderTask : public AbstractTask
 {
 public:
     FinderTask();

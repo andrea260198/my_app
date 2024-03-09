@@ -3,6 +3,7 @@
 #include "Scheduler.h"
 #include "PrinterTask.h"
 #include "FinderTask.h"
+#include "SettingsManager.h"
 
 
 Scheduler::Scheduler()
@@ -26,9 +27,7 @@ void Scheduler::setTaskList()
 
 void Scheduler::setTaskFrequency()
 {
-    auto homePath = QDir::homePath();
-    QString task_timer_settings_filename = "task_timer_settings.ini";
-    QSettings settings(homePath + "/" + task_timer_settings_filename, QSettings::IniFormat);
+    SettingsManager settings;
 
     for (auto task : mTaskList)
     {
@@ -57,6 +56,6 @@ void Scheduler::connectTaskAndTimer()
         // Every time the timer emits the timout signal, the task is executed.
         // "Qt::QueuedConnection" option specifies that tasks shall be executed sequentially.
         // Note that the tasks will run in the main thread.
-        QObject::connect(timer.get(), &QTimer::timeout, task.get(), &ITask::run, Qt::QueuedConnection);
+        QObject::connect(timer.get(), &QTimer::timeout, task.get(), &AbstractTask::run, Qt::QueuedConnection);
     }
 }

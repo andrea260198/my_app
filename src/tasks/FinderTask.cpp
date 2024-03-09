@@ -2,9 +2,9 @@
 
 
 FinderTask::FinderTask()
+    : AbstractTask("FinderTask", 10)
 {
-    mName = "FinderTask";
-    mPeriod = 30;  // [s]
+
 }
 
 
