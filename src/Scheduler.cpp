@@ -5,6 +5,7 @@
 #include "PrinterTask.h"
 #include "FinderTask.h"
 #include "SettingsFactory.h"
+#include <QApplication>
 
 
 Scheduler::Scheduler()
@@ -34,16 +35,18 @@ void Scheduler::setTaskFrequency()
     if (settings.status() == QSettings::NoError)
     {
         qInfo() << "Settings correctly loaded";
+
+        for (auto task : mTaskList)
+        {
+            long period = settings.value(task->getName() + "/period", "r").toInt();
+            task->setPeriod(period);
+        }
     } else
     {
         qWarning() << "Failure to load settings correctly";
+        exit(0);
     }
 
-    for (auto task : mTaskList)
-    {
-        long period = settings.value(task->getName() + "/period", "r").toInt();
-        task->setPeriod(period);
-    }
 }
 
 
