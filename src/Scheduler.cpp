@@ -1,5 +1,6 @@
 #include <QSettings>
 #include <QDir>
+#include <QDebug>
 #include "Scheduler.h"
 #include "PrinterTask.h"
 #include "FinderTask.h"
@@ -29,6 +30,14 @@ void Scheduler::setTaskFrequency()
 {
     SettingsFactory settingsFactory;
     QSettings settings = settingsFactory.create();
+
+    if (settings.status() == QSettings::NoError)
+    {
+        qInfo() << "Settings correctly loaded";
+    } else
+    {
+        qWarning() << "Failure to load settings correctly";
+    }
 
     for (auto task : mTaskList)
     {
